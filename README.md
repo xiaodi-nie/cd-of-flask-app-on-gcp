@@ -167,6 +167,11 @@ We can now use this link to view our flask website.
 5. Setup automated deployment on change
 
 Follow the instructions [here](https://cloud.google.com/source-repositories/docs/quickstart-triggering-builds-with-source-repositories)
+
 Remember to enable the app engine admin API, and grant App Engine access to the Cloud Build service account.
-Push everything to github, the magic is done by the cloudbuild.yaml file
+
+Push everything to github, the magic is done by the cloudbuild.yaml file.
+
 Create a build trigger following the above instructions, but remember to put `*.md` in the `Ignored files filter (glob) (Optional)` field to prevent automatic build when only markdown files are updated.
+
+Now you can push something to test if a new build is triggered. You can check the build log from the `History` tab on the Cloud Build console.
