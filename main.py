@@ -39,6 +39,7 @@ def html():
     return """
     <title>This is a Hello World World Page</title>
     <p>Hello</p>
+    This is a update on the html page
     <p><b>World</b></p>
     """
 
