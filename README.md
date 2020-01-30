@@ -5,4 +5,4 @@ This project implements continuous deployment using Google's Cloud Build service
 ### Create new Git repo
 First we need a new github repo. We will later sync Cloud Source Repositories to this repo to enable continuous build and deploy.
 
-### 
+### Clone repo to GCP cloud shell
