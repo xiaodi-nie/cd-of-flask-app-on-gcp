@@ -12,7 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# [START gae_python37_app]
+# this is part of project1 of Duke ECE590-24 SP20 course
 from flask import Flask
 from flask import jsonify
 from pandas import pandas as pd
