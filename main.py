@@ -40,6 +40,7 @@ def html():
     <title>This is a Hello World World Page</title>
     <p>Hello</p>
     This is a update on the html page
+    This is another update on the page
     <p><b>World</b></p>
     """
 
