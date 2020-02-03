@@ -1,6 +1,8 @@
 # Continuous Deployment of Flask Application on GCP
 This project implements continuous deployment using Google's Cloud Build service. A simple flask application will be deployed to App Engine everytime a new push happens in this github repo. It is done through Cloud Source Repositories and they are private Git repositories hosted on Google Cloud. These repositories let you develop and deploy an app or service in a space that provides collaboration and version control for your code.
 
+A live demo of the website can be found [here](https://flash-time-266701.appspot.com)
+Demo video: [Cloud Analysis Project 1: Continuous Deployment of Flask App on GCP](https://youtu.be/2WgnXvJMDI4)
 
 ## Create new Git repo
 First we need a new github repo. We will later sync Cloud Source Repositories to this repo to enable continuous build and deploy.
