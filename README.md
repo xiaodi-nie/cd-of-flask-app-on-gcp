@@ -2,19 +2,19 @@
 This project implements continuous deployment using Google's Cloud Build service. A simple flask application will be deployed to App Engine everytime a new push happens in this github repo. It is done through Cloud Source Repositories and they are private Git repositories hosted on Google Cloud. These repositories let you develop and deploy an app or service in a space that provides collaboration and version control for your code.
 
 
-### Create new Git repo
+## Create new Git repo
 First we need a new github repo. We will later sync Cloud Source Repositories to this repo to enable continuous build and deploy.
 
-### Clone repo on GCP cloud shell
+## Clone repo on GCP cloud shell
 1. Go to GCP console and create a new project
 2. Activate cloud shell
 3. Verify that project is working 
 
 ```gcloud projects describe $GOOGLE_CLOUD_PROJECT```
 
-If project is not specified, use ```gcloud config set project [PROJECT_ID]``` You can find your project id on the console home page.
+* If project is not specified, use ```gcloud config set project [PROJECT_ID]``` You can find your project id on the console home page.
 
-The describe command should return something like this if everything is working ok:
+* The describe command should return something like this if everything is working ok:
 ```
 createTime: '2020-01-30T01:31:51.088Z'
 lifecycleState: ACTIVE
@@ -22,14 +22,14 @@ name: My First Project
 projectId: flash-time-266701
 projectNumber: '433160118539'
 ```
-Initialize your App Engine app with your project and choose its region:
+* Initialize your App Engine app with your project and choose its region:
 ```
 gcloud app create --project=[YOUR_PROJECT_ID]
 ```
 
-When prompted, select the region where you want your App Engine application located. Go ahead and choose us-central.
+* When prompted, select the region where you want your App Engine application located. Go ahead and choose us-central.
 
-Install prerequisites
+* Install prerequisites
 [Install and download Git ](https://git-scm.com/)
 Install app engine extensions for python3.7
 ```
@@ -39,24 +39,24 @@ gcloud components install app-engine-python
 
 ```ssh-keygen -t rsa```
 
-Then click 'enter' through the prompts to skip setting password. You can find your ssh key here
+* Then click 'enter' through the prompts to skip setting password. You can find your ssh key here
 ```
 Your public key has been saved in /home/niexiaodi_1970/.ssh/id_rsa.pub.
 ```
-Print the key out
+* Print the key out
 ```
 cat /home/niexiaodi_1970/.ssh/id_rsa.pub
 ```
-and add the output to github. You can find this in `Settings - SSH and GPG keys - New SSH Key`
+* and add the output to github. You can find this in `Settings - SSH and GPG keys - New SSH Key`
 Now clone the github repo to our cloud shell
 ```
 git clone [YOUR_GITHUB_SSH_CLONE_URL]
 ```
-Then cd into the repo
+* Then cd into the repo
 
 5.Activate editor for cloud shell
 
-Click the little pen button to the left of the cloud shell button
+* Click the little pen button to the left of the cloud shell button
 
 ## Create code files
 
@@ -132,21 +132,21 @@ timeout: "1600s"
 ```
 3. Test manually
 
-Create an isolated Python environment in a directory external to your project and activate it:
+* Create an isolated Python environment in a directory external to your project and activate it:
 ```
 python3 -m venv env
 source env/bin/activate
 ```
-Navigate to your project directory and install dependencies:
+* Navigate to your project directory and install dependencies:
 ```
 cd YOUR_PROJECT
 make install
 ```
-Run the application:
+* Run the application:
 ```
 python main.py
 ```
-Now in the toolbar, click Web Preview and select Preview on port 8080 to preview the website
+* Now in the toolbar, click Web Preview and select Preview on port 8080 to preview the website
 
 4. Deploy manually
 ```
@@ -166,12 +166,19 @@ We can now use this link to view our flask website.
 
 5. Setup automated deployment on change
 
-Follow the instructions [here](https://cloud.google.com/source-repositories/docs/quickstart-triggering-builds-with-source-repositories)
+* Follow the instructions [here](https://cloud.google.com/source-repositories/docs/quickstart-triggering-builds-with-source-repositories)
 
-Remember to enable the app engine admin API, and grant App Engine access to the Cloud Build service account.
+* Remember to enable the app engine admin API, and grant App Engine access to the Cloud Build service account.
 
-Push everything to github, the magic is done by the cloudbuild.yaml file.
+* Push everything to github, the magic is done by the cloudbuild.yaml file.
 
-Create a build trigger following the above instructions, but remember to put `*.md` in the `Ignored files filter (glob) (Optional)` field to prevent automatic build when only markdown files are updated.
+* Create a build trigger and when prompted to choose repositories, click `connect new repository` and connect your github repo.
+	
+> Remember to put `*.md` in the `Ignored files filter (glob) (Optional)` field to prevent automatic build when only markdown files are updated.
 
-Now you can push something to test if a new build is triggered. You can check the build log from the `History` tab on the Cloud Build console.
+* Now you can push something to test if a new build is triggered. You can check the build log from the `History` tab on the Cloud Build console.
+
+## References
+* [Quickstart for Python 3 in the App Engine Standard Environment](https://cloud.google.com/appengine/docs/standard/python3/quickstart)
+* [Automate App Engine Deployments with Cloud Build](https://cloud.google.com/source-repositories/docs/quickstart-triggering-builds-with-source-repositories)
+* [Paas Continuous Delivery with video instructions](https://github.com/noahgift/cloud-data-analysis-at-scale/blob/master/topics/paas-continuous-delivery.md)
